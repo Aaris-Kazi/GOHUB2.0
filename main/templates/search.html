@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOHUB Search</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="https://access.trivago.com/oauth/favicon_16x16.png">
+</head>
+<body style="background-color: #F9FAFA;">
+    <nav class="navbar navbar-inverse" style="background-color: white;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">
+                    <span style="color:rgb(19, 145, 210);" class="h5">G</span>
+                    <span style="color:rgb(19, 145, 210);" class="h5">O</span>
+                    <span style="color:rgb(252, 158, 21);" class="h5">H</span>
+                    <span style="color:rgb(227, 64, 61);" class="h5">U</span>
+                    <span style="color:rgb(227, 64, 61);" class="h5">B</span>
+                </a>
+            </div>
+            <div class="nav navbar-nav">
+                <a href="login.html"><button class="btn btn-primary mb-3">Login</button></a>
+            </div>
+            <div class="nav navbar-nav">
+                <div class="dropdown">
+                    <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        <svg tabindex="-1" width="24" height="24" viewBox="0 0 24 24" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><g fill-rule="nonzero" fill="none"><circle fill="#F9C77F" cx="12" cy="12" r="12"></circle><path d="M14.223 14.324H9.5c-.126 0-.227.101-.202.228.126 1.111 1.238 2.248 2.577 2.248s2.45-1.137 2.577-2.248a.226.226 0 00-.228-.228z" fill="#37454D"></path><g transform="translate(4.042 9.347)" fill="#37454D"><circle cx="14.425" cy="1.238" r="1.061"></circle><circle cx="1.213" cy="1.314" r="1.061"></circle></g></g></svg>
+                        Aaris
+                    </a>
+                  
+                    <ul class="dropdown-menu" style="position: absolute; left:-50px;margin-top: 10px;" aria-labelledby="dropdownMenuLink">
+                      <li><a class="dropdown-item" href="#">info</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                  </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col"><input type="text" name="location" id="location" class="form-control"  placeholder="Enter your destination"></div>
+            <div class="col">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>
+                        Number of Rooms
+                    </option>
+                    <option value="1">One Room</option>
+                    <option value="2">Two Rooms</option>
+                    <option value="3">Three Rooms</option>
+                  </select>
+            </div>
+            <div class="col">
+                
+                <input class="btn btn-primary mb-3 search" type="button" value="SEARCH">
+            </div>
+        </div>
+
+        <div class="row moremarg">
+            <div class="row hotels">
+                <div class="col-2 image"><img src="https://imgcy.trivago.com/c_lfill,d_dummy.jpeg,e_sharpen:60,f_auto,h_225,q_auto,w_225/itemimages/15/43/1543057_v2.jpeg" alt="" class="img-fluid"></div>
+                <div class="col-4">
+                    <h4 style="width: 186px;">Aamby Valley City</h4>
+                    <span style="--tw-text-opacity: 1; color: rgba(252,158,21,var(--tw-text-opacity));" itemprop="starRating" itemscope="" itemtype="https://schema.org/Rating" data-testid="star-rating" class="text-orange-700 text-s flex"><meta itemprop="ratingValue" content="5"><span class="inline-flex leading-none transform w-3 h-3 mr-px" data-testid="star"><svg width="12" height="12" viewBox="0 0 12 12" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><path d="M12 5.21a.65.65 0 00-.55-.53l-3.6-.6L6.63.46a.66.66 0 00-1.26 0L4.16 4.08l-3.6.6a.65.65 0 00-.56.53.66.66 0 00.31.69L3.2 7.63 2 11.12a.67.67 0 00.26.76.64.64 0 00.38.12.65.65 0 00.41-.15L6 9.52l2.92 2.33a.65.65 0 00.41.15.64.64 0 00.38-.12.67.67 0 00.26-.76L8.8 7.63l2.88-1.73a.66.66 0 00.32-.69z" fill="currentColor"></path></svg></span><span class="inline-flex leading-none transform w-3 h-3 mr-px" data-testid="star"><svg width="12" height="12" viewBox="0 0 12 12" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><path d="M12 5.21a.65.65 0 00-.55-.53l-3.6-.6L6.63.46a.66.66 0 00-1.26 0L4.16 4.08l-3.6.6a.65.65 0 00-.56.53.66.66 0 00.31.69L3.2 7.63 2 11.12a.67.67 0 00.26.76.64.64 0 00.38.12.65.65 0 00.41-.15L6 9.52l2.92 2.33a.65.65 0 00.41.15.64.64 0 00.38-.12.67.67 0 00.26-.76L8.8 7.63l2.88-1.73a.66.66 0 00.32-.69z" fill="currentColor"></path></svg></span><span class="inline-flex leading-none transform w-3 h-3 mr-px" data-testid="star"><svg width="12" height="12" viewBox="0 0 12 12" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><path d="M12 5.21a.65.65 0 00-.55-.53l-3.6-.6L6.63.46a.66.66 0 00-1.26 0L4.16 4.08l-3.6.6a.65.65 0 00-.56.53.66.66 0 00.31.69L3.2 7.63 2 11.12a.67.67 0 00.26.76.64.64 0 00.38.12.65.65 0 00.41-.15L6 9.52l2.92 2.33a.65.65 0 00.41.15.64.64 0 00.38-.12.67.67 0 00.26-.76L8.8 7.63l2.88-1.73a.66.66 0 00.32-.69z" fill="currentColor"></path></svg></span><span class="inline-flex leading-none transform w-3 h-3 mr-px" data-testid="star"><svg width="12" height="12" viewBox="0 0 12 12" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><path d="M12 5.21a.65.65 0 00-.55-.53l-3.6-.6L6.63.46a.66.66 0 00-1.26 0L4.16 4.08l-3.6.6a.65.65 0 00-.56.53.66.66 0 00.31.69L3.2 7.63 2 11.12a.67.67 0 00.26.76.64.64 0 00.38.12.65.65 0 00.41-.15L6 9.52l2.92 2.33a.65.65 0 00.41.15.64.64 0 00.38-.12.67.67 0 00.26-.76L8.8 7.63l2.88-1.73a.66.66 0 00.32-.69z" fill="currentColor"></path></svg></span><span class="inline-flex leading-none transform w-3 h-3 mr-px" data-testid="star"><svg width="12" height="12" viewBox="0 0 12 12" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><path d="M12 5.21a.65.65 0 00-.55-.53l-3.6-.6L6.63.46a.66.66 0 00-1.26 0L4.16 4.08l-3.6.6a.65.65 0 00-.56.53.66.66 0 00.31.69L3.2 7.63 2 11.12a.67.67 0 00.26.76.64.64 0 00.38.12.65.65 0 00.41-.15L6 9.52l2.92 2.33a.65.65 0 00.41.15.64.64 0 00.38-.12.67.67 0 00.26-.76L8.8 7.63l2.88-1.73a.66.66 0 00.32-.69z" fill="currentColor"></path></svg></span></span>
+                    <span class="text-muted"> Hotel</span>
+                    <div class="row" style="margin-top: 5px;">
+                        <div class="col-1"><button class="btn btn-success hotel">8.0</button></div>
+                        <div class="col-4"><h6 style="margin-top: 8px; margin-left: 35px;">GOOD</h6></div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <h6>booking.com</h6>
+                        <span class="filter-green">
+                            <svg width="24" height="24" viewBox="0 0 24 24" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="currentColor"></circle><g fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"><path vector-effect="non-scaling-stroke" d="M17 9l-7 7M10 16l-3-3"></path></g></svg>
+                            Free Cancellation
+                        </span>
+                    </div>
+                    <div class="row">
+                        <div class="col-4" style="color: green; margin-left: 3px;"><strong>₹21,028</strong></div>
+                        <div class="col-6"><button class="btn btn-success">View Deal <svg width="24" height="24" viewBox="0 0 24 24" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"><path vector-effect="non-scaling-stroke" d="M10 17l5-5M10 7l5 5"></path></g></svg></button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 400px;">
+        </div>
+        <div class="row">
+            <ul class="nav justify-content-center pagination" style="max-width: -webkit-fill-available;">
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">next</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <footer class="text-center text-lg-start bg-light text-muted" style="margin-top: 40px;">
+		<!-- Copyright -->
+        
+		<div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+		© 2022 Copyright: Aaris Kazi Project
+		<a class="text-reset fw-bold" href="https://github.com/Aaris-Kazi/">Aaris Kazi</a>
+		</div>
+		<!-- Copyright -->
+    </footer>
+</body>
+</html>

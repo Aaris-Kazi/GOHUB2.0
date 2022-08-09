@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="https://access.trivago.com/oauth/favicon_16x16.png">
+    <title>GOHUB Tour and Travelling</title>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <span style="color:rgb(19, 145, 210);" class="h5">G</span>
+                    <span style="color:rgb(19, 145, 210);" class="h5">O</span>
+                    <span style="color:rgb(252, 158, 21);" class="h5">H</span>
+                    <span style="color:rgb(227, 64, 61);" class="h5">U</span>
+                    <span style="color:rgb(227, 64, 61);" class="h5">B</span>
+                </a>
+            </div>
+            <div class="nav navbar-nav">
+                <a href="login.html"><button class="btn btn-primary mb-3">Login</button></a>
+            </div>
+            <div class="nav navbar-nav">
+                <div class="dropdown">
+                    <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        <svg tabindex="-1" width="24" height="24" viewBox="0 0 24 24" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><g fill-rule="nonzero" fill="none"><circle fill="#F9C77F" cx="12" cy="12" r="12"></circle><path d="M14.223 14.324H9.5c-.126 0-.227.101-.202.228.126 1.111 1.238 2.248 2.577 2.248s2.45-1.137 2.577-2.248a.226.226 0 00-.228-.228z" fill="#37454D"></path><g transform="translate(4.042 9.347)" fill="#37454D"><circle cx="14.425" cy="1.238" r="1.061"></circle><circle cx="1.213" cy="1.314" r="1.061"></circle></g></g></svg>
+                        Aaris
+                    </a>
+                  
+                    <ul class="dropdown-menu" style="position: absolute; left:-50px;margin-top: 10px;" aria-labelledby="dropdownMenuLink">
+						<li><a class="dropdown-item" href="#">info</a></li>
+						<li><hr class="dropdown-divider"></li>
+						<li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+					</ul>
+                  </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row banner">
+            <div class="col-4">
+                <a class="navbar-brand" href="#">
+                    <span style="color:rgb(19, 145, 210); " class="h1">G</span>
+                    <span style="color:rgb(19, 145, 210);" class="h1">O</span>
+                    <span style="color:rgb(252, 158, 21);" class="h1">H</span>
+                    <span style="color:rgb(227, 64, 61);" class="h1">U</span>
+                    <span style="color:rgb(227, 64, 61);" class="h1">B</span>
+                </a>
+                <h2> Tour and Travelling</h2>
+            </div>
+            <div class="col">
+                <h4>Deals from your favourite booking sites</h4>
+                <span class="text-muted">Try searching for a city, a specific hotel, or even a landmark!</span>
+            </div>
+        </div>
+        
+        
+        <div class="row">
+            <div class="col"><input type="text" name="location" id="location" class="form-control"  placeholder="Enter your destination"></div>
+            <div class="col"><input type="date" name="" id="" class="form-control"></div>
+            <div class="col"><input type="date" name="" id="" class="form-control"></div>
+            
+            <div class="col">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Number of Rooms</option>
+                    <option value="1">One Room</option>
+                    <option value="2">Two Rooms</option>
+                    <option value="3">Three Rooms</option>
+                  </select>
+            </div>
+        </div>
+        <div class="row">
+            <figure class="text-center">
+                <a href="search.html"><input class="btn btn-primary mb-3 control" type="button" value="SEARCH"></a>
+            </figure>
+        </div>
+		<div class="row moremarg">
+			<div class="row">
+				<div class="col">
+					<h5>Your Recent Activity</h5>
+				</div>
+			</div>
+			<div class="row withline">
+				<div class="row"><h6>Lonavala</h6></div>
+				<div class="row">
+					<div class="col-1">
+						<div class="row rec">
+							<div class="col-1"><svg width="24" height="24" viewBox="0 0 24 24" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><g fill="currentColor"><path d="M13.13 12.14a4.5 4.5 0 10-7.26 0A5 5 0 002 17a3 3 0 003 3h9a3 3 0 003-3 5 5 0 00-3.87-4.86zM9.5 6a3.49 3.49 0 012.44 6A3.5 3.5 0 016 9.5 3.5 3.5 0 019.5 6zM14 19H5a2 2 0 01-2-2 4 4 0 013.74-4 4.41 4.41 0 005.52 0A4 4 0 0116 17a2 2 0 01-2 2z"></path><path d="M19.31 10.24A3.93 3.93 0 0020 8a4 4 0 00-6.94-2.69 5.87 5.87 0 01.7.71A3 3 0 1116 11a2.91 2.91 0 01-1.15-.23v.11a4.5 4.5 0 01-.28.83A4 4 0 0016 12a3.94 3.94 0 002.55-.94A3 3 0 0121 14a1 1 0 01-1 1h-2.35a6.67 6.67 0 01.26 1H20a2 2 0 002-2 4 4 0 00-2.69-3.76z"></path></g></svg></div>
+						<div class="col"><span class="text-muted">1 Room</span></div>
+						</div>
+					</div>
+					<div class="col-1">
+						<div class="row"></div>
+						<div class="row">
+							<figure class="text-center">
+								<a href=""><button type="button" class="btn btn-light search">Search again</button></a>
+							</figure>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row moremarg">
+			<div class="card-group">
+				<div class="card">
+				  <img src="http://imgcy.trivago.com/c_fill,d_dummy.jpeg,f_auto,h_224,q_auto,w_224/categoryimages/32/18/32189_v11.jpeg" class="card-img-top" alt="...">
+				  <div class="card-body">
+					<h5 class="card-title">Cancun</h5>
+					<p class="card-text">Lovely place</p>
+					
+				  </div>
+				</div>
+				<div class="card">
+				  <img src="http://imgcy.trivago.com/c_fill,d_dummy.jpeg,f_auto,h_224,q_auto,w_224/categoryimages/59/18/59182_v10.jpeg" class="card-img-top" alt="...">
+				  <div class="card-body">
+					<h5 class="card-title">Rio de Janrio</h5>
+					<p class="card-text">Peaceful city</p>
+					
+				  </div>
+				</div>
+				<div class="card">
+				  <img src="http://imgcy.trivago.com/c_fill,d_dummy.jpeg,f_auto,h_224,q_auto,w_224/categoryimages/22/23/22235_v18.jpeg" class="card-img-top" alt="...">
+				  <div class="card-body">
+					<h5 class="card-title">Paris</h5>
+					<p class="card-text">Beautiful loving place enjoy the croissant and Tea</p>
+					
+				  </div>
+				</div>
+				<div class="card">
+				  <img src="http://imgcy.trivago.com/c_fill,d_dummy.jpeg,f_auto,h_224,q_auto,w_224/categoryimages/14/73/14734_v12.jpeg" class="card-img-top" alt="...">
+				  <div class="card-body">
+					<h5 class="card-title">New York</h5>
+					<p class="card-text">Beautifull skyscraper near beautifull central park</p>
+					
+				  </div>
+				</div>
+			  </div>
+		</div>
+    </div>
+    <!-- Footer -->
+    <footer class="text-center text-lg-start bg-light text-muted" style="margin-top: 400px;">
+		<!-- Copyright -->
+		<div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+		© 2022 Copyright: Aaris Kazi Project
+		<a class="text-reset fw-bold" href="https://github.com/Aaris-Kazi/">Aaris Kazi</a>
+		</div>
+		<!-- Copyright -->
+    </footer>
+  <!-- Footer -->
+</body>
+</html>
+<script>
+	function autocomplete(inp, arr) {
+	  var currentFocus;
+	  inp.addEventListener("input", function(e) {
+		  var a, b, i, val = this.value;
+		  /*close any already open lists of autocompleted values*/
+		  closeAllLists();
+		  if (!val) { return false;}
+		  currentFocus = -1;
+		  /*create a DIV element that will contain the items (values):*/
+		  a = document.createElement("DIV");
+		  a.setAttribute("id", this.id + "autocomplete-list");
+		  a.setAttribute("class", "autocomplete-items");
+		  /*append the DIV element as a child of the autocomplete container:*/
+		  this.parentNode.appendChild(a);
+		  /*for each item in the array...*/
+		  for (i = 0; i < arr.length; i++) {
+			/*check if the item starts with the same letters as the text field value:*/
+			if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+			  /*create a DIV element for each matching element:*/
+			  b = document.createElement("div");
+              b.setAttribute('class', 'suggestions')
+			  /*make the matching letters bold:*/
+			  b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+			  b.innerHTML += arr[i].substr(val.length);
+			  /*insert a input field that will hold the current array item's value:*/
+			  b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+			  /*execute a function when someone clicks on the item value (DIV element):*/
+			  b.addEventListener("click", function(e) {
+				  /*insert the value for the autocomplete text field:*/
+				  inp.value = this.getElementsByTagName("input")[0].value;
+				  /*close the list of autocompleted values,
+				  (or any other open lists of autocompleted values:*/
+				  closeAllLists();
+			  });
+			  a.appendChild(b);
+			}
+		  }
+	  });
+	  /*execute a function presses a key on the keyboard:*/
+	  inp.addEventListener("keydown", function(e) {
+		  var x = document.getElementById(this.id + "autocomplete-list");
+		  if (x) x = x.getElementsByTagName("div");
+		  if (e.keyCode == 40) {
+			currentFocus++;
+			/*and and make the current item more visible:*/
+			addActive(x);
+		  } else if (e.keyCode == 38) { //up
+			/*If the arrow UP key is pressed,
+			decrease the currentFocus variable:*/
+			currentFocus--;
+			/*and and make the current item more visible:*/
+			addActive(x);
+		  } else if (e.keyCode == 13) {
+			/*If the ENTER key is pressed, prevent the form from being submitted,*/
+			e.preventDefault();
+			if (currentFocus > -1) {
+			  /*and simulate a click on the "active" item:*/
+			  if (x) x[currentFocus].click();
+			}
+		  }
+	  });
+	  function addActive(x) {
+		/*a function to classify an item as "active":*/
+		if (!x) return false;
+		/*start by removing the "active" class on all items:*/
+		removeActive(x);
+		if (currentFocus >= x.length) currentFocus = 0;
+		if (currentFocus < 0) currentFocus = (x.length - 1);
+		/*add class "autocomplete-active":*/
+		x[currentFocus].classList.add("autocomplete-active");
+	  }
+	  function removeActive(x) {
+		for (var i = 0; i < x.length; i++) {
+		  x[i].classList.remove("autocomplete-active");
+		}
+	  }
+	  function closeAllLists(elmnt) {
+		var x = document.getElementsByClassName("autocomplete-items");
+		for (var i = 0; i < x.length; i++) {
+		  if (elmnt != x[i] && elmnt != inp) {
+			x[i].parentNode.removeChild(x[i]);
+		  }
+		}
+	  }
+	  /*execute a function when someone clicks in the document:*/
+	  document.addEventListener("click", function (e) {
+		  closeAllLists(e.target);
+	  });
+	}
+	
+	var place= ["Hampi","Haridwar","Kerala Backwaters","Lakshadeep Island","Pushkar Fair","Varanasi Ghats","Cheraman Juma Masjid","Jama Mosque","Mecca Masjid","Old Juma Masjid","Ziarat Shareef","Adina Masjid","Charminar","Ajanta Ellora","Charminar","Fatehpur Sikri","Bangalore","Gateway of India","Humayun\'s Tomb","India Gate","Qutub Minar","Taj Mahal","Basilica of Bom Jesus","Chapel of St. Catherine","Gundala Church","Holy Trinity Church","Our Lady of the Rosary\'s Church","Reis Magos Church","St. Joseph\'s Cathedral","St. Francis of Assissi\'s Church","St. Mary\'s Church","he Cross of Miracles\'s Church","The Sacred Heart\'s Church","Adventure Islands","Entertainment City","Essel World","Fun n Food Village","Gujarat Science City","Kingdom of Dreams","Nicco Park","Ocean Park","Veega Land","Wonder La","Baba Amarnath Temple","Golden Temple","Lord Jagannath Temple","Kashi Vishwanath Temple","Khajuraho Temples","Konark Sun Temple","Ranakpur Jain Temples","Shri Meenakshi - Sundareshwarar Temple","Siddhivinayak Temple","Somnath Temple","Thanjavur Temple","Venkataswara Tirupati Balaji Templ","Brindavan Garden","Chambal Garden","Chashme Shahi Garden","Indian Botanical Garden","Lal Bagh Gardens","Lodhi Garden Mughal Gardens","Pinjore Garden","Rock Garden","Shalimar Bag","Alisagar Deer Park","Bandhavgarh National Park","Bori Wildlife Sanctuary","Hazaribagh Sanctuary","Gir National Park and Sanctuary","Hazaribagh Sanctuary","Kaziranga National Park","Manas Wildlife Sanctuary","Lonavala","Keoladeo National Park","Nanda Devi National Park","Sundarbans National Par","Barehipani Waterfalls","Dudhsagar Waterfalls","Jog Waterfalls","Jonha Waterfalls","Kunchikal Waterfalls","Kune Waterfalls","Langshiang Waterfalls","Meenmutty Waterfalls","Nohkalikai Waterfalls","Shivanasamudra Waterfalls","Chandratal Lake","Dal Lake","Hussain Sagar Lake","Loktak Lake","Osman Sagar Lake","Pushkar Lake","Roopkund Lake","Vembanad Lake","Wular Lake","Bhimtal Lake","Chilka Lake","Dal Lake","Darjeeling","Dehradun","Gangtok","Gangtok","Gangtok","Kodaikanal","Kullu and Manali","Mount Abu","Mussoorie","Ooty","Shillong","Shimla","Srinagar","Agra Fort","Amber Fort","Chittorgarh Fort","Fort William","Golconda Fort","Jaisalmer Fort","Kangra Fort","Red Fort or Lal Qila","Qila Mubarak","Ranthambhore Fort","Bir Singh Palace","Chail Palace","Jaipur City Palace","Jaivilas Palace","Jal Mahal","Lake Palace","Lalgarh Palace","Salim Singh ki Haveli","Udaipur City Palace","Umaid Bhawan Palace"];
+	autocomplete(document.getElementById("location"), place);
+	
+</script>
