@@ -34,6 +34,7 @@
             <div class="row">
                 <div class="col align-self-center">
                     <form action="" method="post">
+                        {% csrf_token %}
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="floatingInput" placeholder="John Doe">
                             <label for="floatingInput">User Name</label>
