@@ -36,15 +36,15 @@
                     <form action="" method="post">
                         {% csrf_token %}
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="John Doe">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="John Doe"  name='username'>
                             <label for="floatingInput">User Name</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" placeholder="name@example.com">
+                            <input type="email" class="form-control" placeholder="name@example.com"  name='email'>
                             <label for="floatingInput">Email address</label>
                         </div>
                         <div class="form-floating">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password"  name='pwd'>
                             <label for="floatingPassword">Password</label>
                         </div>
                         <div class="col align-self-center">
