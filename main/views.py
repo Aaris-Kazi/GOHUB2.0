@@ -15,7 +15,11 @@ def register(request):
             u.email  = request.POST['email']
             u.password = request.POST['pwd']
             u.save()
+            u = User.objects.get(username = request.POST['username'])
+            u.set_password(request.POST['pwd'])
+            u.save()
             messages.add_message(request, messages.SUCCESS, 'Registeration successful')
+            return redirect('log')
     except Exception as e:
         messages.add_message(request, messages.ERROR, 'A issue occur during registering'+e)
         print(e)
@@ -23,6 +27,19 @@ def register(request):
     return render(request,'register.html')
 
 def user_login(request):
+    if request.method == 'POST':
+        uname = request.POST['username']
+        pwd = request.POST['pwd']
+        user = authenticate(request, username=uname, password=pwd)
+        print(user)
+        if user is not None:
+            login(request, user)
+            return render(request, 'index.html')
+        else:
+            messages.add_message(request, messages.ERROR, 'Login invalid please check username or passowrd')
+            return render(request,'login.html')
+    else:
+        messages.add_message(request, messages.ERROR, '')
     return render(request,'login.html')
 
 def search(request):
