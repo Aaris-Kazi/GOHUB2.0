@@ -12,7 +12,7 @@ def register(request):
     u.username
     return render(request,'register.html')
 
-def login(request):
+def user_login(request):
     return render(request,'login.html')
 
 def search(request):
