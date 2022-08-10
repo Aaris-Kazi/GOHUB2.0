@@ -8,8 +8,18 @@ def index(request):
     return render(request,'index.html')
 
 def register(request):
-    u = User()
-    u.username
+    try:
+        if request.method == 'POST':
+            u = User()
+            u.username = request.POST['username']
+            u.email  = request.POST['email']
+            u.password = request.POST['pwd']
+            u.save()
+            messages.add_message(request, messages.SUCCESS, 'Registeration successful')
+    except Exception as e:
+        messages.add_message(request, messages.ERROR, 'A issue occur during registering'+e)
+        print(e)
+    
     return render(request,'register.html')
 
 def user_login(request):
