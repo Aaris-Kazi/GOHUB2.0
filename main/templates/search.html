@@ -17,7 +17,7 @@
     <nav class="navbar navbar-inverse" style="background-color: white;">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="/">
                     <span style="color:rgb(19, 145, 210);" class="h5">G</span>
                     <span style="color:rgb(19, 145, 210);" class="h5">O</span>
                     <span style="color:rgb(252, 158, 21);" class="h5">H</span>
@@ -25,24 +25,28 @@
                     <span style="color:rgb(227, 64, 61);" class="h5">B</span>
                 </a>
             </div>
-            <div class="nav navbar-nav">
-                <a href="/login"><button class="btn btn-primary mb-3">Login</button></a>
-            </div>
-            <div class="nav navbar-nav">
-                <div class="dropdown">
-                    <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                        <svg tabindex="-1" width="24" height="24" viewBox="0 0 24 24" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><g fill-rule="nonzero" fill="none"><circle fill="#F9C77F" cx="12" cy="12" r="12"></circle><path d="M14.223 14.324H9.5c-.126 0-.227.101-.202.228.126 1.111 1.238 2.248 2.577 2.248s2.45-1.137 2.577-2.248a.226.226 0 00-.228-.228z" fill="#37454D"></path><g transform="translate(4.042 9.347)" fill="#37454D"><circle cx="14.425" cy="1.238" r="1.061"></circle><circle cx="1.213" cy="1.314" r="1.061"></circle></g></g></svg>
-                        Aaris
-                    </a>
-                  
-                    <ul class="dropdown-menu" style="position: absolute; left:-50px;margin-top: 10px;" aria-labelledby="dropdownMenuLink">
-                      <li><a class="dropdown-item" href="#">info</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
-                    </ul>
-                  </div>
-            </div>
+            {% if user.is_authenticated %}    
+                <div class="nav navbar-nav">
+                    <div class="dropdown">
+                        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <svg tabindex="-1" width="24" height="24" viewBox="0 0 24 24" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><g fill-rule="nonzero" fill="none"><circle fill="#F9C77F" cx="12" cy="12" r="12"></circle><path d="M14.223 14.324H9.5c-.126 0-.227.101-.202.228.126 1.111 1.238 2.248 2.577 2.248s2.45-1.137 2.577-2.248a.226.226 0 00-.228-.228z" fill="#37454D"></path><g transform="translate(4.042 9.347)" fill="#37454D"><circle cx="14.425" cy="1.238" r="1.061"></circle><circle cx="1.213" cy="1.314" r="1.061"></circle></g></g></svg>
+                            {{ user }}
+                        </a>
+                    
+                        <ul class="dropdown-menu" style="position: absolute; left:-50px;margin-top: 10px;" aria-labelledby="dropdownMenuLink">
+                        <li><a class="dropdown-item" href="#">info</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            {% else %}
+                <div class="nav navbar-nav">
+                    <a href="/login"><button class="btn btn-primary mb-3">Login</button></a>
+                </div>
+            {% endif %}
         </div>
+            
     </nav>
 
     <div class="container">
