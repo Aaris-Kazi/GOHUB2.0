@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect, HttpResponseRedirect
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ValidationError
+from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from .models import hotel_details
 
@@ -59,10 +60,13 @@ def search(request):
             s_date = request.POST['start_date']
             e_date = request.POST['end_date']
             room = request.POST['rooms']
-            loc = loc.lower()
-            h = hotel_details.objects.filter(location = loc)
+            locs = loc.lower()
+            h = hotel_details.objects.filter(location = locs)
             print(loc, len(h))
-            return render(request,'search.html', {'rooms': h})
+            objects = ['john', 'paul', 'george', 'ringo']
+            pg = Paginator(objects,2)
+            print(pg.num_pages)
+            return render(request,'search.html', {'rooms': h, 'location': loc})
         else:
             return redirect('home')
     else:
