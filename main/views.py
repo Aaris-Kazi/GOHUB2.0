@@ -42,7 +42,7 @@ def user_login(request):
         user = authenticate(request, username=uname, password=pwd)
         print(user)
         if user is not None:
-            # login(request, user)
+            login(request, user)
             return render(request, 'index.html')
             # HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
         else:
