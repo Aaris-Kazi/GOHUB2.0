@@ -6,8 +6,10 @@ from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from .models import hotel_details
 
-# Create your views here.
+# Create your views here
+loc = ''
 def index(request):
+    print(request.session['location'])
     return render(request,'index.html')
 
 def register(request):
@@ -57,6 +59,7 @@ def search(request):
     if request.method == 'POST':
         if request.POST['location']!= '':
             loc = request.POST['location']
+            request.session['location'] = loc
             s_date = request.POST['start_date']
             e_date = request.POST['end_date']
             room = request.POST['rooms']
@@ -64,7 +67,7 @@ def search(request):
             h = hotel_details.objects.filter(location = locs)
             print(loc, len(h))
             objects = ['john', 'paul', 'george', 'ringo']
-            pg = Paginator(objects,2)
+            pg = Paginator(h ,2)
             print(pg.num_pages)
             return render(request,'search.html', {'rooms': h, 'location': loc})
         else:
@@ -78,6 +81,9 @@ def search2(request):
         loc = loc.lower()
         h = hotel_details.objects.filter(location = loc)
         print(loc, len(h))
+        pg = Paginator(h ,2)
+        print(pg.num_pages)
+        print(pg.page_range)
         return render(request,'search.html', {'rooms': h})
     else:
         return redirect('home')
