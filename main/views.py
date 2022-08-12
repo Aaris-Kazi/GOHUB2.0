@@ -59,7 +59,18 @@ def search(request):
         room = request.POST['rooms']
         loc = loc.lower()
         h = hotel_details.objects.filter(location = loc)
-        print(loc, h)
+        print(loc, len(h))
+        return render(request,'search.html', {'rooms': h})
+    else:
+        return redirect('home')
+    return render(request,'search.html')
+def search2(request):
+    if request.method == 'POST':
+        loc = request.POST['location']
+        room = request.POST['rooms']
+        loc = loc.lower()
+        h = hotel_details.objects.filter(location = loc)
+        print(loc, len(h))
         return render(request,'search.html', {'rooms': h})
     else:
         return redirect('home')

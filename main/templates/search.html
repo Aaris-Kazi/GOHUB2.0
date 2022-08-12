@@ -51,7 +51,8 @@
 
     <div class="container">
         <div class="row">
-            <form action="" method="post" class='row'>
+            <form action="{% url 'search2' %}" method="post" class='row'>
+                {% csrf_token %}
                 <div class="col"><input type="text" name="location" id="location" class="form-control"  placeholder="Enter your destination"></div>
                 <div class="col">
                     <select class="form-select" aria-label="Default select example" name='rooms'>
@@ -71,31 +72,34 @@
         </div>
 
         <div class="row moremarg">
-            <div class="row hotels">
-                <div class="col-2 image"><img src="https://imgcy.trivago.com/c_lfill,d_dummy.jpeg,e_sharpen:60,f_auto,h_225,q_auto,w_225/itemimages/15/43/1543057_v2.jpeg" alt="" class="img-fluid"></div>
-                <div class="col-4">
-                    <h4 style="width: 186px;">Aamby Valley City</h4>
-                    <span style="--tw-text-opacity: 1; color: rgba(252,158,21,var(--tw-text-opacity));" itemprop="starRating" itemscope="" itemtype="https://schema.org/Rating" data-testid="star-rating" class="text-orange-700 text-s flex"><meta itemprop="ratingValue" content="5"><span class="inline-flex leading-none transform w-3 h-3 mr-px" data-testid="star"><svg width="12" height="12" viewBox="0 0 12 12" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><path d="M12 5.21a.65.65 0 00-.55-.53l-3.6-.6L6.63.46a.66.66 0 00-1.26 0L4.16 4.08l-3.6.6a.65.65 0 00-.56.53.66.66 0 00.31.69L3.2 7.63 2 11.12a.67.67 0 00.26.76.64.64 0 00.38.12.65.65 0 00.41-.15L6 9.52l2.92 2.33a.65.65 0 00.41.15.64.64 0 00.38-.12.67.67 0 00.26-.76L8.8 7.63l2.88-1.73a.66.66 0 00.32-.69z" fill="currentColor"></path></svg></span><span class="inline-flex leading-none transform w-3 h-3 mr-px" data-testid="star"><svg width="12" height="12" viewBox="0 0 12 12" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><path d="M12 5.21a.65.65 0 00-.55-.53l-3.6-.6L6.63.46a.66.66 0 00-1.26 0L4.16 4.08l-3.6.6a.65.65 0 00-.56.53.66.66 0 00.31.69L3.2 7.63 2 11.12a.67.67 0 00.26.76.64.64 0 00.38.12.65.65 0 00.41-.15L6 9.52l2.92 2.33a.65.65 0 00.41.15.64.64 0 00.38-.12.67.67 0 00.26-.76L8.8 7.63l2.88-1.73a.66.66 0 00.32-.69z" fill="currentColor"></path></svg></span><span class="inline-flex leading-none transform w-3 h-3 mr-px" data-testid="star"><svg width="12" height="12" viewBox="0 0 12 12" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><path d="M12 5.21a.65.65 0 00-.55-.53l-3.6-.6L6.63.46a.66.66 0 00-1.26 0L4.16 4.08l-3.6.6a.65.65 0 00-.56.53.66.66 0 00.31.69L3.2 7.63 2 11.12a.67.67 0 00.26.76.64.64 0 00.38.12.65.65 0 00.41-.15L6 9.52l2.92 2.33a.65.65 0 00.41.15.64.64 0 00.38-.12.67.67 0 00.26-.76L8.8 7.63l2.88-1.73a.66.66 0 00.32-.69z" fill="currentColor"></path></svg></span><span class="inline-flex leading-none transform w-3 h-3 mr-px" data-testid="star"><svg width="12" height="12" viewBox="0 0 12 12" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><path d="M12 5.21a.65.65 0 00-.55-.53l-3.6-.6L6.63.46a.66.66 0 00-1.26 0L4.16 4.08l-3.6.6a.65.65 0 00-.56.53.66.66 0 00.31.69L3.2 7.63 2 11.12a.67.67 0 00.26.76.64.64 0 00.38.12.65.65 0 00.41-.15L6 9.52l2.92 2.33a.65.65 0 00.41.15.64.64 0 00.38-.12.67.67 0 00.26-.76L8.8 7.63l2.88-1.73a.66.66 0 00.32-.69z" fill="currentColor"></path></svg></span><span class="inline-flex leading-none transform w-3 h-3 mr-px" data-testid="star"><svg width="12" height="12" viewBox="0 0 12 12" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><path d="M12 5.21a.65.65 0 00-.55-.53l-3.6-.6L6.63.46a.66.66 0 00-1.26 0L4.16 4.08l-3.6.6a.65.65 0 00-.56.53.66.66 0 00.31.69L3.2 7.63 2 11.12a.67.67 0 00.26.76.64.64 0 00.38.12.65.65 0 00.41-.15L6 9.52l2.92 2.33a.65.65 0 00.41.15.64.64 0 00.38-.12.67.67 0 00.26-.76L8.8 7.63l2.88-1.73a.66.66 0 00.32-.69z" fill="currentColor"></path></svg></span></span>
-                    <span class="text-muted"> Hotel</span>
-                    <div class="row" style="margin-top: 5px;">
-                        <div class="col-1"><button class="btn btn-success hotel">8.0</button></div>
-                        <div class="col-4"><h6 style="margin-top: 8px; margin-left: 35px;">GOOD</h6></div>
+            {% for i in rooms %}
+                <div class="row hotels">
+                    <div class="col-2 image"><img src= {{ i.hotel_image }} alt="" class="img-fluid"></div>
+                    <div class="col-4">
+                        <h4 style="width: 186px;">{{ i.hotel_name }}</h4>
+                        <span style="--tw-text-opacity: 1; color: rgba(252,158,21,var(--tw-text-opacity));" itemprop="starRating" itemscope="" itemtype="https://schema.org/Rating" data-testid="star-rating" class="text-orange-700 text-s flex"><meta itemprop="ratingValue" content="5"><span class="inline-flex leading-none transform w-3 h-3 mr-px" data-testid="star"><svg width="12" height="12" viewBox="0 0 12 12" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><path d="M12 5.21a.65.65 0 00-.55-.53l-3.6-.6L6.63.46a.66.66 0 00-1.26 0L4.16 4.08l-3.6.6a.65.65 0 00-.56.53.66.66 0 00.31.69L3.2 7.63 2 11.12a.67.67 0 00.26.76.64.64 0 00.38.12.65.65 0 00.41-.15L6 9.52l2.92 2.33a.65.65 0 00.41.15.64.64 0 00.38-.12.67.67 0 00.26-.76L8.8 7.63l2.88-1.73a.66.66 0 00.32-.69z" fill="currentColor"></path></svg></span><span class="inline-flex leading-none transform w-3 h-3 mr-px" data-testid="star"><svg width="12" height="12" viewBox="0 0 12 12" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><path d="M12 5.21a.65.65 0 00-.55-.53l-3.6-.6L6.63.46a.66.66 0 00-1.26 0L4.16 4.08l-3.6.6a.65.65 0 00-.56.53.66.66 0 00.31.69L3.2 7.63 2 11.12a.67.67 0 00.26.76.64.64 0 00.38.12.65.65 0 00.41-.15L6 9.52l2.92 2.33a.65.65 0 00.41.15.64.64 0 00.38-.12.67.67 0 00.26-.76L8.8 7.63l2.88-1.73a.66.66 0 00.32-.69z" fill="currentColor"></path></svg></span><span class="inline-flex leading-none transform w-3 h-3 mr-px" data-testid="star"><svg width="12" height="12" viewBox="0 0 12 12" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><path d="M12 5.21a.65.65 0 00-.55-.53l-3.6-.6L6.63.46a.66.66 0 00-1.26 0L4.16 4.08l-3.6.6a.65.65 0 00-.56.53.66.66 0 00.31.69L3.2 7.63 2 11.12a.67.67 0 00.26.76.64.64 0 00.38.12.65.65 0 00.41-.15L6 9.52l2.92 2.33a.65.65 0 00.41.15.64.64 0 00.38-.12.67.67 0 00.26-.76L8.8 7.63l2.88-1.73a.66.66 0 00.32-.69z" fill="currentColor"></path></svg></span><span class="inline-flex leading-none transform w-3 h-3 mr-px" data-testid="star"><svg width="12" height="12" viewBox="0 0 12 12" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><path d="M12 5.21a.65.65 0 00-.55-.53l-3.6-.6L6.63.46a.66.66 0 00-1.26 0L4.16 4.08l-3.6.6a.65.65 0 00-.56.53.66.66 0 00.31.69L3.2 7.63 2 11.12a.67.67 0 00.26.76.64.64 0 00.38.12.65.65 0 00.41-.15L6 9.52l2.92 2.33a.65.65 0 00.41.15.64.64 0 00.38-.12.67.67 0 00.26-.76L8.8 7.63l2.88-1.73a.66.66 0 00.32-.69z" fill="currentColor"></path></svg></span><span class="inline-flex leading-none transform w-3 h-3 mr-px" data-testid="star"><svg width="12" height="12" viewBox="0 0 12 12" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><path d="M12 5.21a.65.65 0 00-.55-.53l-3.6-.6L6.63.46a.66.66 0 00-1.26 0L4.16 4.08l-3.6.6a.65.65 0 00-.56.53.66.66 0 00.31.69L3.2 7.63 2 11.12a.67.67 0 00.26.76.64.64 0 00.38.12.65.65 0 00.41-.15L6 9.52l2.92 2.33a.65.65 0 00.41.15.64.64 0 00.38-.12.67.67 0 00.26-.76L8.8 7.63l2.88-1.73a.66.66 0 00.32-.69z" fill="currentColor"></path></svg></span></span>
+                        <span class="text-muted"> {{ i.hotel_type }}</span>
+                        <div class="row" style="margin-top: 5px;">
+                            <div class="col-1"><button class="btn btn-success hotel">8.0</button></div>
+                            <div class="col-4"><h6 style="margin-top: 8px; margin-left: 35px;">GOOD</h6></div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <h6>booking.com</h6>
+                            <span class="filter-green">
+                                <svg width="24" height="24" viewBox="0 0 24 24" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="currentColor"></circle><g fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"><path vector-effect="non-scaling-stroke" d="M17 9l-7 7M10 16l-3-3"></path></g></svg>
+                                Free Cancellation
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-4" style="color: green; margin-left: 3px;"><strong>₹{{ i.price }}</strong></div>
+                            <div class="col-6"><button class="btn btn-success">Book Now <svg width="24" height="24" viewBox="0 0 24 24" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"><path vector-effect="non-scaling-stroke" d="M10 17l5-5M10 7l5 5"></path></g></svg></button></div>
+                        </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="row">
-                        <h6>booking.com</h6>
-                        <span class="filter-green">
-                            <svg width="24" height="24" viewBox="0 0 24 24" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="currentColor"></circle><g fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"><path vector-effect="non-scaling-stroke" d="M17 9l-7 7M10 16l-3-3"></path></g></svg>
-                            Free Cancellation
-                        </span>
-                    </div>
-                    <div class="row">
-                        <div class="col-4" style="color: green; margin-left: 3px;"><strong>₹21,028</strong></div>
-                        <div class="col-6"><button class="btn btn-success">View Deal <svg width="24" height="24" viewBox="0 0 24 24" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"><path vector-effect="non-scaling-stroke" d="M10 17l5-5M10 7l5 5"></path></g></svg></button></div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
+            
         </div>
         <div class="row" style="margin-top: 400px;">
         </div>
