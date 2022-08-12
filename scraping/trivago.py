@@ -48,7 +48,9 @@ print(len(h_name), len(price), len(h_type), len(images), len(rate))
 
 for i,j,k,l in zip(h_name, price, h_type, images):
     hotel_name.append(i.text)
-    hotel_price.append(j.text)
+    p = str(j.text).strip("₹")
+    p = p.replace(',', '')
+    hotel_price.append(p)
     hotel_type.append(k.text)
     hotel_image.append(l.get_attribute("src"))
     # hotel_rating.append(m.text)
@@ -60,9 +62,9 @@ driver.quit()
 print(len(hotel_image))
 df = pd.DataFrame({
     "location": location,
-    "Hotel Image": hotel_image,
-    "Hotel Name": hotel_name,
-    "Hotel Type": hotel_type,
-    "Hotel price": hotel_price,
+    "hotel_image": hotel_image,
+    "hotel_name": hotel_name,
+    "price": hotel_price,
+    "hotel_type": hotel_type,
 })
 df.to_csv(loc+'.csv')
