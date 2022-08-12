@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ValidationError
@@ -42,8 +42,9 @@ def user_login(request):
         user = authenticate(request, username=uname, password=pwd)
         print(user)
         if user is not None:
-            login(request, user)
+            # login(request, user)
             return render(request, 'index.html')
+            # HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
         else:
             messages.add_message(request, messages.ERROR, 'Login invalid please check username or passowrd')
             return render(request,'login.html')
@@ -53,17 +54,19 @@ def user_login(request):
 
 def search(request):
     if request.method == 'POST':
-        loc = request.POST['location']
-        s_date = request.POST['start_date']
-        e_date = request.POST['end_date']
-        room = request.POST['rooms']
-        loc = loc.lower()
-        h = hotel_details.objects.filter(location = loc)
-        print(loc, len(h))
-        return render(request,'search.html', {'rooms': h})
+        if request.POST['location']!= '':
+            loc = request.POST['location']
+            s_date = request.POST['start_date']
+            e_date = request.POST['end_date']
+            room = request.POST['rooms']
+            loc = loc.lower()
+            h = hotel_details.objects.filter(location = loc)
+            print(loc, len(h))
+            return render(request,'search.html', {'rooms': h})
+        else:
+            return redirect('home')
     else:
-        return redirect('home')
-    return render(request,'search.html')
+        return render(request,'search.html')
 def search2(request):
     if request.method == 'POST':
         loc = request.POST['location']

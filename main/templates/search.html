@@ -53,7 +53,7 @@
         <div class="row">
             <form action="{% url 'search2' %}" method="post" class='row'>
                 {% csrf_token %}
-                <div class="col"><input type="text" name="location" id="location" class="form-control"  placeholder="Enter your destination"></div>
+                <div class="col"><input type="text" name="location" id="location" class="form-control"  placeholder="Enter your destination" value= {{ h.location }}></div>
                 <div class="col">
                     <select class="form-select" aria-label="Default select example" name='rooms'>
                         <option selected>
