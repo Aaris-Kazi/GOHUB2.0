@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
+from .models import hotel_details
 
 # Create your views here.
 def index(request):
@@ -51,6 +52,17 @@ def user_login(request):
     return render(request,'login.html')
 
 def search(request):
+    if request.method == 'POST':
+        loc = request.POST['location']
+        s_date = request.POST['start_date']
+        e_date = request.POST['end_date']
+        room = request.POST['rooms']
+        loc = loc.lower()
+        h = hotel_details.objects.filter(location = loc)
+        print(loc, h)
+        return render(request,'search.html', {'rooms': h})
+    else:
+        return redirect('home')
     return render(request,'search.html')
 
 def user_logout(request):
