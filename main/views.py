@@ -10,15 +10,13 @@ from .models import hotel_details
 
 def index(request):
     try:
-        # loc = request.session['location']
         loc = request.COOKIES['location_hotel']
-        # print(loc)
-        # room = request.COOKIES['hotel_rooms']
+        room = request.COOKIES['room_hotel']
     except Exception as e:
         print(e)
         loc = ''
-        # room = ''
-    return render(request,'index.html', {'session_location':loc})
+        room = ''
+    return render(request,'index.html', {'session_location':loc,'rooms':room})
 
 def register(request):
     try:
@@ -55,7 +53,6 @@ def user_login(request):
         if user is not None:
             login(request, user)
             return render(request, 'index.html')
-            # HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
         else:
             messages.add_message(request, messages.ERROR, 'Login invalid please check username or passowrd')
             return render(request,'login.html')
@@ -67,13 +64,14 @@ def search(request):
     if request.method == 'POST':
         if request.POST['location']!= '':
             loc = request.POST['location']
+            room = request.POST['rooms']
             request.session['location'] = loc
+            request.session['rooms'] = room
             
             loc1 = request.session['location']
+            room1 = request.session['rooms']
             s_date = request.POST['start_date']
             e_date = request.POST['end_date']
-            room = request.POST['rooms']
-            request.session['rooms'] = room
             locs = loc.lower()
             h = hotel_details.objects.filter(location = locs)
             print(loc, len(h))
@@ -81,6 +79,7 @@ def search(request):
             print(pg.num_pages)
             response = render(request,'search.html', {'rooms': h,'location':request.session['location'], 'room':request.session['rooms']})
             response.set_cookie('location_hotel', loc1)
+            response.set_cookie('room_hotel', room1)
             return response
         else:
             return redirect('home')
