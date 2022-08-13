@@ -55,10 +55,8 @@
                 {% csrf_token %}
                 <div class="col"><input type="text" name="location" id="location" class="form-control"  placeholder="Enter your destination" value= {{ location }}></div>
                 <div class="col">
-                    <select class="form-select" aria-label="Default select example" name='rooms'>
-                        <option selected>
-                            Number of Rooms
-                        </option>
+                    <select class="form-select" aria-label="Default select example" name='rooms' value={{ room }}>
+
                         <option value="1">One Room</option>
                         <option value="2">Two Rooms</option>
                         <option value="3">Three Rooms</option>

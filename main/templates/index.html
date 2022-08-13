@@ -77,8 +77,7 @@
 					
 					<div class="col">
 						<select class="form-select" aria-label="Default select example" name='rooms'>
-							<option selected>Number of Rooms</option>
-							<option value="1">One Room</option>
+							<option value="1" selected>One Room</option>
 							<option value="2">Two Rooms</option>
 							<option value="3">Three Rooms</option>
 						</select>
@@ -98,23 +97,26 @@
 				</div>
 			</div>
 			<div class="row withline">
-				<div class="row"><h6>Lonavala</h6></div>
-				<div class="row">
-					<div class="col-1">
-						<div class="row rec">
-							<div class="col-1"><svg width="24" height="24" viewBox="0 0 24 24" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><g fill="currentColor"><path d="M13.13 12.14a4.5 4.5 0 10-7.26 0A5 5 0 002 17a3 3 0 003 3h9a3 3 0 003-3 5 5 0 00-3.87-4.86zM9.5 6a3.49 3.49 0 012.44 6A3.5 3.5 0 016 9.5 3.5 3.5 0 019.5 6zM14 19H5a2 2 0 01-2-2 4 4 0 013.74-4 4.41 4.41 0 005.52 0A4 4 0 0116 17a2 2 0 01-2 2z"></path><path d="M19.31 10.24A3.93 3.93 0 0020 8a4 4 0 00-6.94-2.69 5.87 5.87 0 01.7.71A3 3 0 1116 11a2.91 2.91 0 01-1.15-.23v.11a4.5 4.5 0 01-.28.83A4 4 0 0016 12a3.94 3.94 0 002.55-.94A3 3 0 0121 14a1 1 0 01-1 1h-2.35a6.67 6.67 0 01.26 1H20a2 2 0 002-2 4 4 0 00-2.69-3.76z"></path></g></svg></div>
-						<div class="col"><span class="text-muted">1 Room</span></div>
+				{% if session_location != '' %}
+					<div class="row"><h6>{{ session_location }}</h6></div>
+					<div class="row">
+						<div class="col-1">
+							<div class="row rec">
+								<div class="col-1"><svg width="24" height="24" viewBox="0 0 24 24" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><g fill="currentColor"><path d="M13.13 12.14a4.5 4.5 0 10-7.26 0A5 5 0 002 17a3 3 0 003 3h9a3 3 0 003-3 5 5 0 00-3.87-4.86zM9.5 6a3.49 3.49 0 012.44 6A3.5 3.5 0 016 9.5 3.5 3.5 0 019.5 6zM14 19H5a2 2 0 01-2-2 4 4 0 013.74-4 4.41 4.41 0 005.52 0A4 4 0 0116 17a2 2 0 01-2 2z"></path><path d="M19.31 10.24A3.93 3.93 0 0020 8a4 4 0 00-6.94-2.69 5.87 5.87 0 01.7.71A3 3 0 1116 11a2.91 2.91 0 01-1.15-.23v.11a4.5 4.5 0 01-.28.83A4 4 0 0016 12a3.94 3.94 0 002.55-.94A3 3 0 0121 14a1 1 0 01-1 1h-2.35a6.67 6.67 0 01.26 1H20a2 2 0 002-2 4 4 0 00-2.69-3.76z"></path></g></svg></div>
+							<div class="col"><span class="text-muted">{{ rooms }} Room</span></div>
+							</div>
+						</div>
+						<div class="col-1">
+							<div class="row"></div>
+							<div class="row">
+								<figure class="text-center">
+									<a href="/search"><button type="button" class="btn btn-light search">Search again</button></a>
+								</figure>
+							</div>
 						</div>
 					</div>
-					<div class="col-1">
-						<div class="row"></div>
-						<div class="row">
-							<figure class="text-center">
-								<a href="/search"><button type="button" class="btn btn-light search">Search again</button></a>
-							</figure>
-						</div>
-					</div>
-				</div>
+				{% endif %}
+				
 			</div>
 		</div>
 		<div class="row moremarg">

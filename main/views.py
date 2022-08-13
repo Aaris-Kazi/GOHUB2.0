@@ -7,9 +7,8 @@ from django.contrib.auth.models import User
 from .models import hotel_details
 
 # Create your views here
-loc = ''
+
 def index(request):
-    print(request.session['location'])
     return render(request,'index.html')
 
 def register(request):
@@ -63,13 +62,13 @@ def search(request):
             s_date = request.POST['start_date']
             e_date = request.POST['end_date']
             room = request.POST['rooms']
+            request.session['rooms'] = room
             locs = loc.lower()
             h = hotel_details.objects.filter(location = locs)
             print(loc, len(h))
-            objects = ['john', 'paul', 'george', 'ringo']
             pg = Paginator(h ,2)
             print(pg.num_pages)
-            return render(request,'search.html', {'rooms': h, 'location': loc})
+            return render(request,'search.html', {'rooms': h,'location':request.session['location'], 'room':request.session['rooms']})
         else:
             return redirect('home')
     else:
@@ -90,6 +89,11 @@ def search2(request):
     return render(request,'search.html')
 
 def user_logout(request):
+    try:
+        del request.session['location']
+        del request.session['rooms']
+    except KeyError:
+        pass
     logout(request)
     return redirect('home')
     # render(request,'search.html')
