@@ -10,9 +10,14 @@ from .models import hotel_details
 
 def index(request):
     try:
-        loc =request.COOKIES['location_hotel']
-    except Exception:
+        # loc = request.session['location']
+        loc = request.COOKIES['location_hotel']
+        # print(loc)
+        # room = request.COOKIES['hotel_rooms']
+    except Exception as e:
+        print(e)
         loc = ''
+        # room = ''
     return render(request,'index.html', {'session_location':loc})
 
 def register(request):
@@ -95,6 +100,7 @@ def search2(request):
         print(pg.page_range)
         response = render(request,'search.html', {'rooms': h,'location':request.session['location'], 'room':request.session['rooms']})
         response.set_cookie('location_hotel', loc)
+        response.set_cookie('hotel_rooms', room)
         return response
     else:
         return redirect('home')
