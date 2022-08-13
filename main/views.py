@@ -99,7 +99,7 @@ def search2(request):
         print(pg.page_range)
         response = render(request,'search.html', {'rooms': h,'location':request.session['location'], 'room':request.session['rooms']})
         response.set_cookie('location_hotel', loc)
-        response.set_cookie('hotel_rooms', room)
+        response.set_cookie('room_hotel', room)
         return response
     else:
         return redirect('home')
