@@ -9,7 +9,11 @@ from .models import hotel_details
 # Create your views here
 
 def index(request):
-    return render(request,'index.html')
+    try:
+        loc =request.COOKIES['location_hotel']
+    except Exception:
+        loc = ''
+    return render(request,'index.html', {'session_location':loc})
 
 def register(request):
     try:
@@ -59,6 +63,8 @@ def search(request):
         if request.POST['location']!= '':
             loc = request.POST['location']
             request.session['location'] = loc
+            
+            loc1 = request.session['location']
             s_date = request.POST['start_date']
             e_date = request.POST['end_date']
             room = request.POST['rooms']
@@ -68,7 +74,9 @@ def search(request):
             print(loc, len(h))
             pg = Paginator(h ,2)
             print(pg.num_pages)
-            return render(request,'search.html', {'rooms': h,'location':request.session['location'], 'room':request.session['rooms']})
+            response = render(request,'search.html', {'rooms': h,'location':request.session['location'], 'room':request.session['rooms']})
+            response.set_cookie('location_hotel', loc1)
+            return response
         else:
             return redirect('home')
     else:
@@ -77,22 +85,26 @@ def search2(request):
     if request.method == 'POST':
         loc = request.POST['location']
         room = request.POST['rooms']
+        request.session['location'] = loc
+        request.session['rooms'] = room
         loc = loc.lower()
         h = hotel_details.objects.filter(location = loc)
         print(loc, len(h))
         pg = Paginator(h ,2)
         print(pg.num_pages)
         print(pg.page_range)
-        return render(request,'search.html', {'rooms': h})
+        response = render(request,'search.html', {'rooms': h,'location':request.session['location'], 'room':request.session['rooms']})
+        response.set_cookie('location_hotel', loc)
+        return response
     else:
         return redirect('home')
-    return render(request,'search.html')
 
 def user_logout(request):
     try:
         del request.session['location']
         del request.session['rooms']
-    except KeyError:
+    except KeyError as e:
+        print(e)
         pass
     logout(request)
     return redirect('home')
