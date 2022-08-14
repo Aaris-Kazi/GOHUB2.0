@@ -73,10 +73,17 @@ def search(request):
             e_date = request.POST['end_date']
             locs = loc.lower()
             h = hotel_details.objects.filter(location = locs)
-            print(loc, len(h))
-            pg = Paginator(h ,2)
+            # print(loc, len(h))
+            pg = Paginator(h ,10)
+            
             print(pg.num_pages)
-            response = render(request,'search.html', {'rooms': h,'location':request.session['location'], 'room':request.session['rooms']})
+            print(pg.count)
+            print(pg.page_range)
+            p1 =pg.page(1)
+            print(p1)
+            # print(p1.object_list)
+
+            response = render(request,'search.html', {'rooms': h,'location':request.session['location'], 'room':request.session['rooms'], 'page': pg})
             response.set_cookie('location_hotel', loc1)
             response.set_cookie('room_hotel', room1)
             return response
@@ -94,10 +101,10 @@ def search2(request):
         loc = loc.lower()
         h = hotel_details.objects.filter(location = loc)
         print(loc, len(h))
-        pg = Paginator(h ,2)
+        pg = Paginator(h ,10)
         print(pg.num_pages)
         print(pg.page_range)
-        response = render(request,'search.html', {'rooms': h,'location':request.session['location'], 'room':request.session['rooms']})
+        response = render(request,'search.html', {'rooms': h,'location':request.session['location'], 'room':request.session['rooms'], 'page': pg})
         response.set_cookie('location_hotel', loc)
         response.set_cookie('room_hotel', room)
         return response
