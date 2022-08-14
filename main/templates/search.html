@@ -103,8 +103,9 @@
         </div>
         <div class="row">
             <ul class="nav justify-content-center pagination" style="max-width: -webkit-fill-available;">
-                {% for i in page.page_range %}
-                    <li class="page-item"><a class="page-link" href="#">{{ i }}</a></li>
+                {% for i in pages.page_range %}
+                    <li class="page-item"><a class="page-link" href="{% url 'search3' i %}">{{ i }}</a></li>
+                    {% comment %} {% set pg_n = '' %} {% endcomment %}
                 {% endfor %}
                 <li class="page-item"><a class="page-link" href="#">next</a></li>
             </ul>

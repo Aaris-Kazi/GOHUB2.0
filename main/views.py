@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+
+from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ValidationError
@@ -83,7 +84,7 @@ def search(request):
             print(p1)
             # print(p1.object_list)
 
-            response = render(request,'search.html', {'rooms': h,'location':request.session['location'], 'room':request.session['rooms'], 'page': pg})
+            response = render(request,'search.html', {'rooms': h,'location':request.session['location'], 'room':request.session['rooms'], 'pages': pg})
             response.set_cookie('location_hotel', loc1)
             response.set_cookie('room_hotel', room1)
             return response
@@ -104,12 +105,23 @@ def search2(request):
         pg = Paginator(h ,10)
         print(pg.num_pages)
         print(pg.page_range)
-        response = render(request,'search.html', {'rooms': h,'location':request.session['location'], 'room':request.session['rooms'], 'page': pg})
+        response = render(request,'search.html', {'rooms': h,'location':request.session['location'], 'room':request.session['rooms'], 'pages': pg})
         response.set_cookie('location_hotel', loc)
         response.set_cookie('room_hotel', room)
         return response
     else:
         return redirect('home')
+
+def search3(request, pagenumber):
+    print(pagenumber)
+    loc = request.session['location']
+    print(loc)
+    h = hotel_details.objects.filter(location = loc)
+    # response = render(request,'search.html', {'rooms': h,'location':request.session['location'], 'room':request.session['rooms'], 'pages': pg})
+    # response.set_cookie('location_hotel', loc)
+    # response.set_cookie('room_hotel', room)
+    # return response
+    return HttpResponse(pagenumber )
 
 def user_logout(request):
     try:
