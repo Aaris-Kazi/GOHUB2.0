@@ -77,14 +77,14 @@ def search(request):
             # print(loc, len(h))
             pg = Paginator(h ,10)
             
-            print(pg.num_pages)
-            print(pg.count)
-            print(pg.page_range)
+            # print(pg.num_pages)
+            # print(pg.count)
+            # print(pg.page_range)
             p1 =pg.page(1)
-            print(p1)
+            # print(p1)
             # print(p1.object_list)
 
-            response = render(request,'search.html', {'rooms': h,'location':request.session['location'], 'room':request.session['rooms'], 'pages': pg})
+            response = render(request,'search.html', {'rooms': p1.object_list,'location':request.session['location'], 'room':request.session['rooms'], 'pages': pg})
             response.set_cookie('location_hotel', loc1)
             response.set_cookie('room_hotel', room1)
             return response
@@ -103,9 +103,10 @@ def search2(request):
         h = hotel_details.objects.filter(location = loc)
         print(loc, len(h))
         pg = Paginator(h ,10)
-        print(pg.num_pages)
-        print(pg.page_range)
-        response = render(request,'search.html', {'rooms': h,'location':request.session['location'], 'room':request.session['rooms'], 'pages': pg})
+        p1 = pg.page(1)
+        # print(pg.num_pages)
+        # print(pg.page_range)
+        response = render(request,'search.html', {'rooms': p1.object_list,'location':request.session['location'], 'room':request.session['rooms'], 'pages': pg})
         response.set_cookie('location_hotel', loc)
         response.set_cookie('room_hotel', room)
         return response
@@ -115,13 +116,17 @@ def search2(request):
 def search3(request, pagenumber):
     print(pagenumber)
     loc = request.session['location']
+    room = request.session['rooms']
     print(loc)
     h = hotel_details.objects.filter(location = loc)
-    # response = render(request,'search.html', {'rooms': h,'location':request.session['location'], 'room':request.session['rooms'], 'pages': pg})
-    # response.set_cookie('location_hotel', loc)
-    # response.set_cookie('room_hotel', room)
-    # return response
-    return HttpResponse(pagenumber )
+    pg = Paginator(h ,10)
+    p1 =pg.page(pagenumber)
+    # print(p1.object_list)
+    response = render(request,'search.html', {'rooms': p1.object_list,'location':request.session['location'], 'room':request.session['rooms'], 'pages': pg})
+    response.set_cookie('location_hotel', loc)
+    response.set_cookie('room_hotel', room)
+    return response
+    # return HttpResponse(pagenumber )
 
 def user_logout(request):
     try:
