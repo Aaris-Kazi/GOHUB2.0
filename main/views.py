@@ -13,7 +13,6 @@ def index(request):
         loc = request.COOKIES['location_hotel']
         room = request.COOKIES['room_hotel']
     except Exception as e:
-        print(e)
         loc = ''
         room = ''
     return render(request,'index.html', {'session_location':loc,'rooms':room})
@@ -85,6 +84,7 @@ def search(request):
             return redirect('home')
     else:
         return render(request,'search.html')
+
 def search2(request):
     if request.method == 'POST':
         loc = request.POST['location']
@@ -109,7 +109,6 @@ def user_logout(request):
         del request.session['location']
         del request.session['rooms']
     except KeyError as e:
-        print(e)
         pass
     logout(request)
     return redirect('home')
