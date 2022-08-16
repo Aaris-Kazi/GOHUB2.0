@@ -10,3 +10,8 @@ class hotel_details(models.Model):
     price = models.IntegerField()
     def __str__(self):
         return str(self.location)+" "+str(self.hotel_image)+" "+str(self.hotel_name)+" "+str(self.price)
+
+class resultsnotfound(models.Model):
+    location = models.CharField(max_length=50)
+    def __str__(self):
+        return str(self.location)

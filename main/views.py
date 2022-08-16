@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ValidationError
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
-from .models import hotel_details
+from .models import hotel_details, resultsnotfound
 
 # Create your views here
 
@@ -75,6 +75,12 @@ def search(request):
             locs = loc.lower()
             h = hotel_details.objects.filter(location = locs)
             # print(loc, len(h))
+            if len(h) == 0:
+                res = resultsnotfound.objects.filter(location = loc)
+                if len(res) == 0:
+                    res = resultsnotfound()
+                    res.location = loc
+                    res.save()
             pg = Paginator(h ,10)
             
             # print(pg.num_pages)
@@ -101,11 +107,16 @@ def search2(request):
         request.session['rooms'] = room
         loc = loc.lower()
         h = hotel_details.objects.filter(location = loc)
+        if len(h) == 0:
+            print('result not found')
+            res = resultsnotfound.objects.filter(location = loc)
+            if len(res) == 0:
+                res = resultsnotfound()
+                res.location = loc
+                res.save()
         print(loc, len(h))
         pg = Paginator(h ,10)
         p1 = pg.page(1)
-        # print(pg.num_pages)
-        # print(pg.page_range)
         response = render(request,'search.html', {'rooms': p1.object_list,'location':request.session['location'], 'room':request.session['rooms'], 'pages': pg})
         response.set_cookie('location_hotel', loc)
         response.set_cookie('room_hotel', room)
