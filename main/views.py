@@ -2,6 +2,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
@@ -16,6 +17,8 @@ def index(request):
     except Exception as e:
         loc = ''
         room = ''
+    pgname = request.session['pagename'] =request.build_absolute_uri()
+    print(pgname)
     return render(request,'index.html', {'session_location':loc,'rooms':room})
 
 def register(request):
@@ -46,22 +49,28 @@ def register(request):
 
 def user_login(request):
     if request.method == 'POST':
+        pgname = request.session['pagename']
+        print(pgname)
         uname = request.POST['username']
         pwd = request.POST['pwd']
         user = authenticate(request, username=uname, password=pwd)
         print(user)
         if user is not None:
             login(request, user)
-            return render(request, 'index.html')
+            return redirect(pgname)
+            # return render(request, 'index.html')
         else:
             messages.add_message(request, messages.ERROR, 'Login invalid please check username or passowrd')
             return render(request,'login.html')
     else:
         messages.add_message(request, messages.ERROR, '')
+        pgname = request.session['pagename']
+        print(pgname)
     return render(request,'login.html')
 
 def search(request):
     if request.method == 'POST':
+        request.session['pagename'] =request.build_absolute_uri()
         if request.POST['location']!= '':
             loc = request.POST['location']
             room = request.POST['rooms']
@@ -101,6 +110,7 @@ def search(request):
 
 def search2(request):
     if request.method == 'POST':
+        request.session['pagename'] =request.build_absolute_uri()
         loc = request.POST['location']
         room = request.POST['rooms']
         request.session['location'] = loc
@@ -125,6 +135,7 @@ def search2(request):
         return redirect('home')
 
 def search3(request, pagenumber):
+    request.session['pagename'] =request.build_absolute_uri()
     print(pagenumber)
     loc = request.session['location']
     room = request.session['rooms']
@@ -147,3 +158,8 @@ def user_logout(request):
     logout(request)
     return redirect('home')
     # render(request,'search.html')
+
+
+@login_required(login_url='/login')
+def booking(request):
+    pass
