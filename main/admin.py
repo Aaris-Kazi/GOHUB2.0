@@ -7,3 +7,9 @@ class Hotel(admin.ModelAdmin):
     ordering= ['location']
 
 admin.site.register(models.hotel_details, Hotel)
+
+class Booking(admin.ModelAdmin):
+    list_display = ['userid', 'hotelid', 'location', 'startday', 'endday', 'price']
+    ordering= ['id']
+
+admin.site.register(models.hotel_booking, Booking)

@@ -14,6 +14,14 @@ class hotel_details(models.Model):
     def __str__(self):
         return str(self.location)+" "+str(self.hotel_image)+" "+str(self.hotel_name)+" "+str(self.price)
 
+class hotel_booking(models.Model):
+    userid = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete= models.CASCADE)
+    hotelid = models.ForeignKey(hotel_details, on_delete= models.CASCADE)
+    location = models.CharField(max_length=50)
+    startday = models.DateField()
+    endday = models.DateField()
+    price = models.IntegerField()
+
 class resultsnotfound(models.Model):
     location = models.CharField(max_length=50)
     def __str__(self):  
