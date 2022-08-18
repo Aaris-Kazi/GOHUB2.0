@@ -137,7 +137,6 @@ def search3(request, pagenumber):
     response.set_cookie('location_hotel', loc)
     response.set_cookie('room_hotel', room)
     return response
-    # return HttpResponse(pagenumber )
 
 def user_logout(request):
     try:
