@@ -57,7 +57,15 @@ def user_login(request):
         print(user)
         if user is not None:
             login(request, user)
+            if 'search' in pgname:
+                print('True')
+                return redirect(search3, '1')
+            # if 'next' in request.POST:
+            #     next = request.POST['next']
+            #     print(next)
+            #     return redirect(next)
             return redirect(pgname)
+
             # return render(request, 'index.html')
         else:
             messages.add_message(request, messages.ERROR, 'Login invalid please check username or passowrd')
@@ -161,5 +169,7 @@ def user_logout(request):
 
 
 @login_required(login_url='/login')
-def booking(request):
+def booking(request, userid, hotelid, location, startday, endday):
+    print(userid, hotelid, location, startday, endday)
+    # user
     pass
