@@ -50,15 +50,21 @@ def register(request):
 def user_login(request):
     if request.method == 'POST':
         pgname = request.session['pagename']
+        # request.session['userid'] = user.id
         print(pgname)
         uname = request.POST['username']
         pwd = request.POST['pwd']
         user = authenticate(request, username=uname, password=pwd)
-        print(user)
+        # print(user)
         if user is not None:
             login(request, user)
+            user = User.objects.filter(username=user)
+            for i in user:
+                request.session['userid'] = i.id
+            
             if 'search' in pgname:
                 print('True')
+                
                 return redirect(search3, '1')
             # if 'next' in request.POST:
             #     next = request.POST['next']
@@ -170,6 +176,8 @@ def user_logout(request):
 
 @login_required(login_url='/login')
 def booking(request, userid, hotelid, location, startday, endday):
+    if userid == None:
+        userid = request.session['userid']
     print(userid, hotelid, location, startday, endday)
     # user
-    pass
+    return HttpResponse("Hello")
