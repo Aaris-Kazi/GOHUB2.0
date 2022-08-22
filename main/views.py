@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
-from .models import hotel_details, resultsnotfound
+from .models import hotel_details, resultsnotfound, hotel_booking
 
 # Create your views here
 
@@ -94,7 +94,9 @@ def search(request):
             loc1 = request.session['location']
             room1 = request.session['rooms']
             s_date = request.POST['start_date']
+            request.session['sdate'] = request.POST['start_date']
             e_date = request.POST['end_date']
+            request.session['edate'] = request.POST['end_date']
             locs = loc.lower()
             h = hotel_details.objects.filter(location = locs)
             # print(loc, len(h))
@@ -129,6 +131,8 @@ def search2(request):
         room = request.POST['rooms']
         request.session['location'] = loc
         request.session['rooms'] = room
+        request.session['sdate']
+        request.session['edate']
         loc = loc.lower()
         h = hotel_details.objects.filter(location = loc)
         if len(h) == 0:
@@ -153,6 +157,8 @@ def search3(request, pagenumber):
     print(pagenumber)
     loc = request.session['location']
     room = request.session['rooms']
+    request.session['sdate']
+    request.session['edate']
     print(loc)
     h = hotel_details.objects.filter(location = loc)
     pg = Paginator(h ,10)
@@ -175,9 +181,18 @@ def user_logout(request):
 
 
 @login_required(login_url='/login')
-def booking(request, userid, hotelid, location, startday, endday):
+def booking(request, userid, hotelid, location,):
     if userid == None:
         userid = request.session['userid']
-    print(userid, hotelid, location, startday, endday)
+    sday = request.session['sdate']
+    eday = request.session['edate']
+    hb = hotel_booking()
+    hb.userid = userid
+    hb.hotelid = hotelid
+    hb.location = location
+    hb.startday = sday
+    hb.endday = eday
+    hb.save()
+    print(userid, hotelid, location, sday, eday)
     # user
     return HttpResponse("Hello")

@@ -7,6 +7,6 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('search2/', views.search2, name='search2'),
     path('searchpage/<pagenumber>', views.search3, name='searchpage'),
-    path('book/<userid>/<hotelid>/<str:location>/<startday>/<endday>', views.booking, name='book'),
+    path('book/<userid>/<hotelid>/<str:location>', views.booking, name='book'),
     path('logout/', views.user_logout, name='logout'),
 ]
