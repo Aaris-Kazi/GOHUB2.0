@@ -194,7 +194,7 @@ def booking(request, userid, hotelid, location):
         hb.location = location
         hb.startday = sday
         hb.endday = eday
-        sday, eday= datetime.strptime(sday,"%Y-%m-%d"), datetime.strptime(eday,"%Y-%m-%d")
+        sday, eday = datetime.strptime(sday,"%Y-%m-%d"), datetime.strptime(eday,"%Y-%m-%d")
         delta = eday-sday
         delta = delta.days
         price = delta * hd.price
