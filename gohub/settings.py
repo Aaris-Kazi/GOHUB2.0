@@ -75,16 +75,26 @@ WSGI_APPLICATION = 'gohub.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'gohub',
+    #     'USER': 'root',
+    #     'PASSWORD': '12345',
+    #     'HOST': '127.0.0.1',
+    #     'PORT': '3306',
+    #     'OPTIONS': {  
+    #         'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
+    #     } 
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'gohub',
-        'USER': 'root',
+        'USER': 'postgres',
         'PASSWORD': '12345',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-        'OPTIONS': {  
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
-        } 
+        'HOST': 'localhost',
+        'PORT': '5432',
+        # 'OPTIONS': {  
+        #     'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
+        # } 
     }
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
