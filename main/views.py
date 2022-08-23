@@ -1,4 +1,5 @@
 
+from datetime import datetime
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -71,8 +72,6 @@ def user_login(request):
             #     print(next)
             #     return redirect(next)
             return redirect(pgname)
-
-            # return render(request, 'index.html')
         else:
             messages.add_message(request, messages.ERROR, 'Login invalid please check username or passowrd')
             return render(request,'login.html')
@@ -177,22 +176,32 @@ def user_logout(request):
         pass
     logout(request)
     return redirect('home')
-    # render(request,'search.html')
 
 
 @login_required(login_url='/login')
-def booking(request, userid, hotelid, location,):
-    if userid == None:
-        userid = request.session['userid']
-    sday = request.session['sdate']
-    eday = request.session['edate']
-    hb = hotel_booking()
-    hb.userid = userid
-    hb.hotelid = hotelid
-    hb.location = location
-    hb.startday = sday
-    hb.endday = eday
-    hb.save()
+def booking(request, userid, hotelid, location):
+    pgname = request.session['pagename']
+    try:
+        hb = hotel_booking()
+        hd = hotel_details.objects.get(pk = hotelid)
+        if userid == None:
+            userid = request.session['userid']
+        sday = request.session['sdate']
+        eday = request.session['edate']
+        
+        hb.userid = request.user
+        hb.hotelid = hd
+        hb.location = location
+        hb.startday = sday
+        hb.endday = eday
+        sday, eday= datetime.strptime(sday,"%Y-%m-%d"), datetime.strptime(eday,"%Y-%m-%d")
+        delta = eday-sday
+        delta = delta.days
+        price = delta * hd.price
+        hb.price = price
+        hb.save()
+        return redirect('home')
+    except Exception as e:
+        print(e)
+        return redirect(pgname)
     print(userid, hotelid, location, sday, eday)
-    # user
-    return HttpResponse("Hello")
