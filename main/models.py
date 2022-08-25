@@ -21,6 +21,8 @@ class hotel_booking(models.Model):
     startday = models.DateField()
     endday = models.DateField()
     price = models.IntegerField()
+    def __str__(self):
+        return str(self.userid)+" "+str(self.hotelid)+" "+str(self.location)+" "+str(self.startday)+" "+str(self.endday)+" "+str(self.price)
 
 class resultsnotfound(models.Model):
     location = models.CharField(max_length=50)

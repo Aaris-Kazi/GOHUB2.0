@@ -120,6 +120,42 @@
 			{% endif %}
 				
 		</div>
+		{% if user.is_authenticated %}
+			<div class="row moremarg">
+				
+				{% for i in results %}
+					<div class="card mb-3" style="max-width: 540px; padding: 0px;">
+						<div class="row g-0">
+						<div class="col">
+							<img src="{{ i.hotelid.hotel_image }}" class="img-fluid rounded-start" alt="..." style="min-width: 0px;">
+						</div>
+						<div class="col-md-8">
+							<div class="card-body">
+							<h5 class="card-title">{{ i.hotelid.hotel_name }}</h5>
+								<div class="row">
+									<div class="col">
+										<span style="--tw-text-opacity: 1; color: rgba(252,158,21,var(--tw-text-opacity));" itemprop="starRating" itemscope="" itemtype="https://schema.org/Rating" data-testid="star-rating" class="text-orange-700 text-s flex"><meta itemprop="ratingValue" content="5"><span class="inline-flex leading-none transform w-3 h-3 mr-px" data-testid="star"><svg width="12" height="12" viewBox="0 0 12 12" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><path d="M12 5.21a.65.65 0 00-.55-.53l-3.6-.6L6.63.46a.66.66 0 00-1.26 0L4.16 4.08l-3.6.6a.65.65 0 00-.56.53.66.66 0 00.31.69L3.2 7.63 2 11.12a.67.67 0 00.26.76.64.64 0 00.38.12.65.65 0 00.41-.15L6 9.52l2.92 2.33a.65.65 0 00.41.15.64.64 0 00.38-.12.67.67 0 00.26-.76L8.8 7.63l2.88-1.73a.66.66 0 00.32-.69z" fill="currentColor"></path></svg></span><span class="inline-flex leading-none transform w-3 h-3 mr-px" data-testid="star"><svg width="12" height="12" viewBox="0 0 12 12" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><path d="M12 5.21a.65.65 0 00-.55-.53l-3.6-.6L6.63.46a.66.66 0 00-1.26 0L4.16 4.08l-3.6.6a.65.65 0 00-.56.53.66.66 0 00.31.69L3.2 7.63 2 11.12a.67.67 0 00.26.76.64.64 0 00.38.12.65.65 0 00.41-.15L6 9.52l2.92 2.33a.65.65 0 00.41.15.64.64 0 00.38-.12.67.67 0 00.26-.76L8.8 7.63l2.88-1.73a.66.66 0 00.32-.69z" fill="currentColor"></path></svg></span><span class="inline-flex leading-none transform w-3 h-3 mr-px" data-testid="star"><svg width="12" height="12" viewBox="0 0 12 12" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><path d="M12 5.21a.65.65 0 00-.55-.53l-3.6-.6L6.63.46a.66.66 0 00-1.26 0L4.16 4.08l-3.6.6a.65.65 0 00-.56.53.66.66 0 00.31.69L3.2 7.63 2 11.12a.67.67 0 00.26.76.64.64 0 00.38.12.65.65 0 00.41-.15L6 9.52l2.92 2.33a.65.65 0 00.41.15.64.64 0 00.38-.12.67.67 0 00.26-.76L8.8 7.63l2.88-1.73a.66.66 0 00.32-.69z" fill="currentColor"></path></svg></span><span class="inline-flex leading-none transform w-3 h-3 mr-px" data-testid="star"><svg width="12" height="12" viewBox="0 0 12 12" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><path d="M12 5.21a.65.65 0 00-.55-.53l-3.6-.6L6.63.46a.66.66 0 00-1.26 0L4.16 4.08l-3.6.6a.65.65 0 00-.56.53.66.66 0 00.31.69L3.2 7.63 2 11.12a.67.67 0 00.26.76.64.64 0 00.38.12.65.65 0 00.41-.15L6 9.52l2.92 2.33a.65.65 0 00.41.15.64.64 0 00.38-.12.67.67 0 00.26-.76L8.8 7.63l2.88-1.73a.66.66 0 00.32-.69z" fill="currentColor"></path></svg></span><span class="inline-flex leading-none transform w-3 h-3 mr-px" data-testid="star"><svg width="12" height="12" viewBox="0 0 12 12" class="pointer-events-none max-h-full max-w-full" xmlns="http://www.w3.org/2000/svg"><path d="M12 5.21a.65.65 0 00-.55-.53l-3.6-.6L6.63.46a.66.66 0 00-1.26 0L4.16 4.08l-3.6.6a.65.65 0 00-.56.53.66.66 0 00.31.69L3.2 7.63 2 11.12a.67.67 0 00.26.76.64.64 0 00.38.12.65.65 0 00.41-.15L6 9.52l2.92 2.33a.65.65 0 00.41.15.64.64 0 00.38-.12.67.67 0 00.26-.76L8.8 7.63l2.88-1.73a.66.66 0 00.32-.69z" fill="currentColor"></path></svg></span></span>
+										<p class="card-text">{{ i.hotelid.hotel_type }}</p>
+										<!-- <span class="text-muted"></span> -->
+									</div>
+									<div class="col" style="color: green; margin-left: 3px;"><strong>₹{{ i.price }}</strong></div>
+								</div>
+							<div class="row" style="margin-top: 44px;"></div>
+							<div class="row">
+								<div class="col"><p class="card-text"><small class="text-muted">{{ i.startday }}</small></p></div>
+								<div class="col"><p class="card-text"><small class="text-muted">TILL</small></p></div>
+								<div class="col"><p class="card-text"><small class="text-muted">{{ i.endday }}</small></p></div>
+							</div> 
+							</div>
+						</div>
+						</div>
+					</div>
+
+				{% endfor %}
+				
+			</div>	
+		{% endif %}
+		
 		<div class="row moremarg">
 			<div class="card-group">
 				<div class="card">
