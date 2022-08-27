@@ -170,13 +170,17 @@ def search3(request, pagenumber):
     request.session['pagename'] =request.build_absolute_uri()
     print(pagenumber)
     loc = request.session['location']
+    loc = loc.lower()
     room = request.session['rooms']
     request.session['sdate']
     request.session['edate']
-    print(loc)
     h = hotel_details.objects.filter(location = loc)
+    # print(h)
+    # print(len(h))
+    # print(loc)
+    # print(type(loc))
     pg = Paginator(h ,10)
-    p1 =pg.page(pagenumber)
+    p1 =pg.page(1)
     # print(p1.object_list)
     response = render(request,'search.html', {'rooms': p1.object_list,'location':request.session['location'], 'room':request.session['rooms'], 'pages': pg})
     response.set_cookie('location_hotel', loc)
