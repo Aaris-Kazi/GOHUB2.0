@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-5%rhdd4z95m%6@4u1qjr)d&3w3cxe5_o(u85gki#y^6%!juacm
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['gohub-tours.heroku.com','127.0.0.1']
+ALLOWED_HOSTS = ['gohub-tours.herokuapp.com','127.0.0.1']
 
 
 # Application definition
