@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-5%rhdd4z95m%6@4u1qjr)d&3w3cxe5_o(u85gki#y^6%!juacm'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['gohub-tours.heroku.com','127.0.0.1']
 
 
 # Application definition
