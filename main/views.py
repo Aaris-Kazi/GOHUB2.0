@@ -19,8 +19,8 @@ def index(request):
         loc = ''
         room = ''
     pgname = request.session['pagename'] =request.build_absolute_uri()
-    print(pgname)
-    print(request.user)
+    # print(pgname)
+    # print(request.user)
     # if request.user :
     result = ''
     if str(request.user) != 'AnonymousUser':
@@ -29,9 +29,10 @@ def index(request):
         date = date.strftime("%Y-%m-%d")
         query = "SELECT * FROM main_hotel_booking where userid_id = "+str(request.session['userid'])+" and startday >='"+date+"'"
         result = hotel_booking.objects.raw(raw_query= query)
-        for i in result:
-            print(i)
-        print(result)
+        # for i in result:
+        #     print(i)
+        # print(result)
+        # hotel_booking.objects.bulk_create
         
 
     return render(request,'index.html', {'session_location':loc,'rooms':room, "results": result})
