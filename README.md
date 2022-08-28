@@ -12,11 +12,11 @@
 
 <img src = https://github.com/Aaris-Kazi/GOHUB2.0/blob/main/gohub.gif height=360 width=480>
 
-## setup
+## SETUP
     pip install -r requirements.txt
 
-## database
+## DATABASE
     python manage.py migrate
 
-## run application
+## RUN APPLICATION
     python manage.py runserver
