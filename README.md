@@ -8,10 +8,15 @@
                 </a>
 </div>
 
-## GOHUB2.0
-
 ### OUTPUT
 
 <img src = https://github.com/Aaris-Kazi/GOHUB2.0/blob/main/gohub.gif height=360 width=480>
 
+## setup
+    pip install -r requirements.txt
 
+## database
+    python manage.py migrate
+
+## run application
+    python manage.py runserver
