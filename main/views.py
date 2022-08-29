@@ -181,7 +181,7 @@ def search3(request, pagenumber):
     # print(loc)
     # print(type(loc))
     pg = Paginator(h ,10)
-    p1 =pg.page(1)
+    p1 =pg.page(pagenumber)
     # print(p1.object_list)
     response = render(request,'search.html', {'rooms': p1.object_list,'location':request.session['location'], 'room':request.session['rooms'], 'pages': pg})
     response.set_cookie('location_hotel', loc)
