@@ -3,3 +3,4 @@ Jinja2==3.1.2
 gunicorn==20.1.0
 itsdangerous==2.0.1
 jedi==0.18.0
+whitenoise==6.2.0
