@@ -96,6 +96,7 @@ ul{
 }
 .col-2.image{
     min-width: 134px;
+    padding-left: 5px;
 }
 .btn.btn-success.hotel{
     width: 45px;
@@ -110,8 +111,10 @@ ul{
     --tw-bg-opacity: 1;
     background-color: rgba(255,255,255,var(--tw-bg-opacity));
     border-radius: 5px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 0px;
+    padding-right: 0px;
     box-shadow: 0 1px 4px 0 #0a1121a6;   
 }
 .fundo{
