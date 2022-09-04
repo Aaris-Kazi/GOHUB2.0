@@ -112,6 +112,8 @@ ul{
     border-radius: 5px;
     padding-top: 10px;
     padding-bottom: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
     box-shadow: 0 1px 4px 0 #0a1121a6;   
 }
 .fundo{
