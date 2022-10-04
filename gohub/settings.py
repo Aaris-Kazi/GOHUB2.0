@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     ################################
     "whitenoise.runserver_nostatic",
+    'import_export',
     ##################################
     "main"
 ]
