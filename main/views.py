@@ -16,6 +16,12 @@ from .forms import NewUserForm
 
 # Create your views here
 
+def removeAddtional(text):
+    text = str(text).strip(']')
+    text = text.strip('[')
+    text = text.strip("'")
+    return text
+
 def index(request):
     try:
         loc = request.COOKIES['location_hotel']
@@ -48,39 +54,26 @@ def register(request):
                 query_dict = QueryDict("", mutable=True)
                 data = request.POST.copy()
                 pwd1 = data.pop('password')
-                pwd1 = str(pwd1).strip(']')
-                pwd1 = pwd1.strip('[')
-                pwd1 = pwd1.strip("'")
+                pwd1 = removeAddtional(pwd1)
                 print(pwd1)
                 query_dict.update(data)
                 query_dict.update({'password': pwd1,'password1': pwd1, 'password2': pwd1})
                 
                 print(query_dict)
-                # <QueryDict: {'csrfmiddlewaretoken': ['R5vVh2WazFHTIE4CBAvpz9tEP8pAoa6oQBhvIEgGcwfoBFJlqPqeQ6BIfHSJAToH'], 'username': ['tet'], 'email': ['test@gmail.com'], 'password': ['Test@123'], 'password1': ['Test@123'], 'password2': ['Test@123']}>
-                # <QueryDict: {'csrfmiddlewaretoken': ['K9jwkzaigtcEjzQBQKHiu8PrIqougkFmawLR70HONoZ9aDdCgRCT7uNPBRMtt71Y'], 'username': ['test'], 'email': ['test@gmail.com'], 'password': ['12345'], 'password1': ['12345'], 'password2': ['12345']}>
                 form = NewUserForm(query_dict)
-                print(form)
+                error = str(form).split('<ul class="errorlist"><li>')
+                error = str(error[1]).split('</li>')
+                print(error[0])
                 if form.is_valid():
                     print("Registeration successful")
                     messages.add_message(request, messages.SUCCESS, 'Registeration successful')
                     form.save()
                 else:
-                    raise ValidationError('Invalid')
+                    raise ValidationError(error[0])
                     
-                # u = User()
-                # u.username = request.POST['username']
-                # u.email  = request.POST['email']
-                # u.password = request.POST['password']
-                # u.save()
-                # u = User.objects.get(username = request.POST['username'])
-                # u.set_password(request.POST['password'])
-                # u.save()
-                # messages.add_message(request, messages.SUCCESS, 'Registeration successful')
                 return redirect('log')
     except Exception as e:
-        e = str(e).strip("[")
-        e = str(e).strip("]")
-        e = str(e).strip("'")
+        e = removeAddtional(e)
         messages.add_message(request, messages.ERROR, e)
         print(e)
     
