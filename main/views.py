@@ -8,7 +8,7 @@ from django.core.exceptions import ValidationError
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 
-# from django.contrib.auth.forms import UserCreationForm
+from django.http import QueryDict
 
 from .models import hotel_details, resultsnotfound, hotel_booking
 
@@ -32,8 +32,6 @@ def index(request):
         try:
             print(request.session['userid'])
             queryset = hotel_booking.objects.filter(userid = request.session['userid'], startday__gte = date)
-            # for i in queryset:
-            #     print(i)    
             return render(request,'index.html', {'session_location':loc,'rooms':room, "results": queryset})
         except Exception:
             pass
@@ -47,24 +45,37 @@ def register(request):
             if new.first() is not None: 
                 raise ValidationError("Email Already Existed") 
             else:
+                query_dict = QueryDict("", mutable=True)
+                data = request.POST.copy()
+                pwd1 = data.pop('password')
+                pwd1 = str(pwd1).strip(']')
+                pwd1 = pwd1.strip('[')
+                pwd1 = pwd1.strip("'")
+                print(pwd1)
+                query_dict.update(data)
+                query_dict.update({'password': pwd1,'password1': pwd1, 'password2': pwd1})
+                
+                print(query_dict)
                 # <QueryDict: {'csrfmiddlewaretoken': ['R5vVh2WazFHTIE4CBAvpz9tEP8pAoa6oQBhvIEgGcwfoBFJlqPqeQ6BIfHSJAToH'], 'username': ['tet'], 'email': ['test@gmail.com'], 'password': ['Test@123'], 'password1': ['Test@123'], 'password2': ['Test@123']}>
-                # form = NewUserForm(request.POST)
-                # print(request.POST)
-                # if form.is_valid():
-                #     print("It is valid")
-                #     form.save()
-                # else:
-                #     raise ValidationError('Invalid')
+                # <QueryDict: {'csrfmiddlewaretoken': ['K9jwkzaigtcEjzQBQKHiu8PrIqougkFmawLR70HONoZ9aDdCgRCT7uNPBRMtt71Y'], 'username': ['test'], 'email': ['test@gmail.com'], 'password': ['12345'], 'password1': ['12345'], 'password2': ['12345']}>
+                form = NewUserForm(query_dict)
+                print(form)
+                if form.is_valid():
+                    print("Registeration successful")
+                    messages.add_message(request, messages.SUCCESS, 'Registeration successful')
+                    form.save()
+                else:
+                    raise ValidationError('Invalid')
                     
-                u = User()
-                u.username = request.POST['username']
-                u.email  = request.POST['email']
-                u.password = request.POST['password']
-                u.save()
-                u = User.objects.get(username = request.POST['username'])
-                u.set_password(request.POST['password'])
-                u.save()
-                messages.add_message(request, messages.SUCCESS, 'Registeration successful')
+                # u = User()
+                # u.username = request.POST['username']
+                # u.email  = request.POST['email']
+                # u.password = request.POST['password']
+                # u.save()
+                # u = User.objects.get(username = request.POST['username'])
+                # u.set_password(request.POST['password'])
+                # u.save()
+                # messages.add_message(request, messages.SUCCESS, 'Registeration successful')
                 return redirect('log')
     except Exception as e:
         e = str(e).strip("[")
