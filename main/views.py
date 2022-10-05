@@ -1,4 +1,3 @@
-
 from datetime import datetime
 
 from django.shortcuts import render, redirect, HttpResponse
@@ -26,22 +25,20 @@ def index(request):
         room = ''
     pgname = request.session['pagename'] =request.build_absolute_uri()
     
-    result = ''
     if str(request.user) != 'AnonymousUser':
         HB = hotel_booking.objects.all()
         date = datetime.today()
         date = date.strftime("%Y-%m-%d")
         try:
-            # print(request.session['userid'])
-            query = "SELECT * FROM main_hotel_booking where userid_id = "+str(request.session['userid'])+" and startday >='"+date+"'"
-            result = hotel_booking.objects.raw(raw_query= query)
-            for i in result:
-                print(i)    
+            print(request.session['userid'])
+            queryset = hotel_booking.objects.filter(userid = request.session['userid'], startday__gte = date)
+            # for i in queryset:
+            #     print(i)    
+            return render(request,'index.html', {'session_location':loc,'rooms':room, "results": queryset})
         except Exception:
             pass
         
-
-    return render(request,'index.html', {'session_location':loc,'rooms':room, "results": result})
+    return render(request,'index.html', {'session_location':loc,'rooms':room})
 
 def register(request):
     try:
