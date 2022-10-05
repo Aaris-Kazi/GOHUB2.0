@@ -8,7 +8,12 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
+
+# from django.contrib.auth.forms import UserCreationForm
+
 from .models import hotel_details, resultsnotfound, hotel_booking
+
+from .forms import NewUserForm
 
 # Create your views here
 
@@ -20,20 +25,20 @@ def index(request):
         loc = ''
         room = ''
     pgname = request.session['pagename'] =request.build_absolute_uri()
-    # print(pgname)
-    # print(request.user)
-    # if request.user :
+    
     result = ''
     if str(request.user) != 'AnonymousUser':
         HB = hotel_booking.objects.all()
         date = datetime.today()
         date = date.strftime("%Y-%m-%d")
-        query = "SELECT * FROM main_hotel_booking where userid_id = "+str(request.session['userid'])+" and startday >='"+date+"'"
-        result = hotel_booking.objects.raw(raw_query= query)
-        # for i in result:
-        #     print(i)
-        # print(result)
-        # hotel_booking.objects.bulk_create
+        try:
+            # print(request.session['userid'])
+            query = "SELECT * FROM main_hotel_booking where userid_id = "+str(request.session['userid'])+" and startday >='"+date+"'"
+            result = hotel_booking.objects.raw(raw_query= query)
+            for i in result:
+                print(i)    
+        except Exception:
+            pass
         
 
     return render(request,'index.html', {'session_location':loc,'rooms':room, "results": result})
@@ -42,18 +47,28 @@ def register(request):
     try:
         if request.method == 'POST':
             new = User.objects.filter(email=request.POST['email'])  
-            if new.count():  
+            if new.first() is not None: 
                 raise ValidationError("Email Already Existed") 
-            u = User()
-            u.username = request.POST['username']
-            u.email  = request.POST['email']
-            u.password = request.POST['pwd']
-            u.save()
-            u = User.objects.get(username = request.POST['username'])
-            u.set_password(request.POST['pwd'])
-            u.save()
-            messages.add_message(request, messages.SUCCESS, 'Registeration successful')
-            return redirect('log')
+            else:
+                # <QueryDict: {'csrfmiddlewaretoken': ['R5vVh2WazFHTIE4CBAvpz9tEP8pAoa6oQBhvIEgGcwfoBFJlqPqeQ6BIfHSJAToH'], 'username': ['tet'], 'email': ['test@gmail.com'], 'password': ['Test@123'], 'password1': ['Test@123'], 'password2': ['Test@123']}>
+                # form = NewUserForm(request.POST)
+                # print(request.POST)
+                # if form.is_valid():
+                #     print("It is valid")
+                #     form.save()
+                # else:
+                #     raise ValidationError('Invalid')
+                    
+                u = User()
+                u.username = request.POST['username']
+                u.email  = request.POST['email']
+                u.password = request.POST['password']
+                u.save()
+                u = User.objects.get(username = request.POST['username'])
+                u.set_password(request.POST['password'])
+                u.save()
+                messages.add_message(request, messages.SUCCESS, 'Registeration successful')
+                return redirect('log')
     except Exception as e:
         e = str(e).strip("[")
         e = str(e).strip("]")
