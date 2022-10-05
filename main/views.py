@@ -55,28 +55,21 @@ def register(request):
                 data = request.POST.copy()
                 pwd1 = data.pop('password')
                 pwd1 = removeAddtional(pwd1)
-                print(pwd1)
                 query_dict.update(data)
                 query_dict.update({'password': pwd1,'password1': pwd1, 'password2': pwd1})
-                
-                print(query_dict)
                 form = NewUserForm(query_dict)
                 error = str(form).split('<ul class="errorlist"><li>')
                 error = str(error[1]).split('</li>')
-                print(error[0])
                 if form.is_valid():
                     print("Registeration successful")
                     messages.add_message(request, messages.SUCCESS, 'Registeration successful')
                     form.save()
                 else:
                     raise ValidationError(error[0])
-                    
                 return redirect('log')
     except Exception as e:
         e = removeAddtional(e)
         messages.add_message(request, messages.ERROR, e)
-        print(e)
-    
     return render(request,'register.html')
 
 
